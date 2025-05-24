@@ -1,0 +1,269 @@
+{
+  "info": {
+    "name": "API Test Collection",
+    "description": "Collection of example API requests for testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GET Requests",
+      "item": [
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.example.com/users",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users"]
+            }
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.example.com/users/1",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "POST Requests",
+      "item": [
+        {
+          "name": "Create New User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@example.com\",\n    \"age\": 30\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/users",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "PUT Requests",
+      "item": [
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"John Doe Updated\",\n    \"email\": \"john.updated@example.com\",\n    \"age\": 31\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/users/1",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DELETE Requests",
+      "item": [
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://api.example.com/users/1",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["users", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication Requests",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"testpassword\"\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/auth/login",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Authentication & Task Flow",
+      "item": [
+        {
+          "name": "1. Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"testpassword\"\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/auth/login",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "2. Create Task",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "description": "Login'den alınan token buraya eklenecek"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Test Task\",\n    \"description\": \"This is a test task\",\n    \"dueDate\": \"2024-03-20\"\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/tasks",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["tasks"]
+            }
+          }
+        },
+        {
+          "name": "3. Get User Tasks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.example.com/tasks",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["tasks"]
+            }
+          }
+        },
+        {
+          "name": "4. Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.example.com/auth/logout",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["auth", "logout"]
+            }
+          }
+        },
+        {
+          "name": "5. Login Again",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"username\": \"testuser\",\n    \"password\": \"testpassword\"\n}"
+            },
+            "url": {
+              "raw": "https://api.example.com/auth/login",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "6. Check Tasks After Login",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "https://api.example.com/tasks",
+              "protocol": "https",
+              "host": ["api", "example", "com"],
+              "path": ["tasks"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+} 
